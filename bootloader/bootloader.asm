@@ -27,20 +27,23 @@
 	.hdd_boot_drive_located:
 
 	;; check if disk functionality extensions are present (for example, extension for LBA besides CHS addressing)
+	;; this interrupt is part of extended BIOS
 	mov ah, byte 041h
 	mov bx, word [boot_signature]
 	int 013h
 
 	;; carry flag is set if there are no extensions
-	jc .hdd_extensions_not_available:
+	jc .hdd_extensions_not_available
 	;; if there is no error, bx is set to inverted boot signature
 	cmp bx, word 055AAh
-	jne .hdd_extensions_not_available:
-	;; test will do bitwise AND and set correspondin flags
+	jne .hdd_extensions_not_available
+	;; test will do bitwise AND and set corresponding flags
+	;; test if LBA is available (packet structure)
 	test cl, byte 1
 	jnz .hdd_extensions_available
 
 	.hdd_extensions_not_available:
+	
 	.hdd_boot_drive_not_located:
 
 	.hdd_extensions_available:

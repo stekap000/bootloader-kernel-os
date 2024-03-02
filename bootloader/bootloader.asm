@@ -14,8 +14,12 @@
 		end if
 	}
 
+;; =====================================================
+
 	mov si, test_string
 	call _panic
+	
+;; =====================================================
 	
 black_hole:
 	jmp black_hole
@@ -32,6 +36,7 @@ _panic:
 	jmp far 0ffffh:0
 	;; jmp far 0f000h:0fff0h
 
+;; expects present address in si
 _print:
 	lodsb
 	or al, al
@@ -45,6 +50,8 @@ _print:
 
 test_string: db "lkjasd lkajsd", 0
 panic_msg:	 db "PANIC:", 0
+	
+boot_drive:	 db 0
 	
 dummy:  	db 510 - ($ - $$) dup 0
 boot_mark:	db 55h, 0AAh

@@ -88,6 +88,7 @@
 	mov word [lba_packet.count], 1
 	mov word [lba_packet.segment], 080h
 	mov word [lba_packet.offset], 0
+	mov cx, second_stage_boot
 	mov word [lba_packet.sector0], 0
 	mov word [lba_packet.sector1], 2
 	mov word [lba_packet.sector2], 0
@@ -147,7 +148,9 @@ _print:
 
 ;; this will hold boot drive number that BIOS loads into dl before loading bootloader
 boot_drive_bios_id:	 db 0
+;; this is used to mark second stage bootloader
 magic_bytes:	     dw 05441h
+second_stage_boot:	 dd 0ffffffffh
 	
 panic_header:		 db "PANIC: ", 0
 hdd_no_ext_error:	 db "ERROR::HDD::EXT::NOT_AVAILABLE", 0

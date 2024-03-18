@@ -7,5 +7,5 @@ bootloader.bin:
 	mv bootloader.bin $(BUILD_DIR)/bootloader.bin
 
 clean:
-	rm -f $(BUILD_DIR)/bootloader.asm
+	rm -f $(BUILD_DIR)/bootloader.bin
 

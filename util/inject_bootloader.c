@@ -52,6 +52,7 @@ int main(int argc, char **argv) {
 			DEFER_RETURN(READ_ERROR);
 		}
 
+		// This happens in the case of EOF
 		if(read_return == 0) {
 			printf("Can't find magic bytes for second stage bootloader.\n");
 			DEFER_RETURN(READ_ERROR);

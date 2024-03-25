@@ -18,8 +18,8 @@ image:
 	losetup -D
 
 # Inject first stage bootloader into disk image
-#	./inject_bootloader disk.img bootloader.bin
-#	mv disk.img ../dist/disk.img
+	./inject_bootloader disk.img bootloader.bin
+	mv disk.img ../dist/disk.img
 
 clean:
 	losetup -D
